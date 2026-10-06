@@ -1,0 +1,841 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#ff4f81">
+<title>For My Sister & Bestie 💕</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+    font-family:Arial,sans-serif;
+    background:#080012;
+    color:white;
+    overflow:hidden;
+    height:100vh;
+}
+
+.bg{
+    position:fixed;
+    inset:0;
+    background:
+    radial-gradient(circle at 20% 20%,#ff4f8140,transparent 30%),
+    radial-gradient(circle at 80% 80%,#9b5cff40,transparent 30%),
+    linear-gradient(135deg,#080012,#19001f,#080012);
+    z-index:-5;
+}
+
+.star{
+    position:fixed;
+    width:3px;height:3px;
+    background:white;
+    border-radius:50%;
+    opacity:.8;
+    animation:twinkle 2s infinite alternate;
+}
+
+@keyframes twinkle{
+    from{opacity:.2;transform:scale(.5)}
+    to{opacity:1;transform:scale(1.5)}
+}
+
+.heart{
+    position:fixed;
+    bottom:-30px;
+    font-size:22px;
+    animation:floatUp linear forwards;
+    pointer-events:none;
+    z-index:1;
+}
+
+@keyframes floatUp{
+    0%{transform:translateY(0) rotate(0);opacity:0}
+    10%{opacity:1}
+    100%{transform:translateY(-110vh) rotate(360deg);opacity:0}
+}
+
+#startScreen{
+    position:fixed;
+    inset:0;
+    background:
+    radial-gradient(circle,#ff4f8130,transparent 45%),
+    linear-gradient(135deg,#090012,#21001f);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:25px;
+    z-index:9999;
+}
+
+.startBox{
+    max-width:420px;
+    animation:appear 1.2s ease;
+}
+
+.bigHeart{
+    font-size:75px;
+    animation:pulse 1.4s infinite;
+}
+
+.startBox h1{
+    font-size:34px;
+    margin:15px 0;
+}
+
+.startBox p{
+    color:#ffd6e5;
+    line-height:1.6;
+    margin-bottom:25px;
+}
+
+.startBtn{
+    border:none;
+    padding:16px 28px;
+    border-radius:50px;
+    background:linear-gradient(45deg,#ff3f78,#a84cff);
+    color:white;
+    font-size:17px;
+    font-weight:bold;
+    box-shadow:0 0 30px #ff4f8180;
+}
+
+@keyframes pulse{
+    50%{transform:scale(1.15)}
+}
+
+@keyframes appear{
+    from{opacity:0;transform:scale(.8)}
+    to{opacity:1;transform:scale(1)}
+}
+
+#main{
+    display:none;
+    height:100vh;
+    position:relative;
+}
+
+.scene{
+    display:none;
+    height:100vh;
+    width:100%;
+    padding:35px 22px 110px;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    animation:sceneIn .8s ease;
+}
+
+.scene.active{display:flex}
+
+@keyframes sceneIn{
+    from{opacity:0;transform:translateY(25px) scale(.97)}
+    to{opacity:1;transform:translateY(0) scale(1)}
+}
+
+.content{
+    max-width:650px;
+    width:100%;
+}
+
+.emoji{
+    font-size:65px;
+    margin-bottom:15px;
+}
+
+h1{
+    font-size:clamp(30px,8vw,55px);
+    margin-bottom:18px;
+    background:linear-gradient(90deg,#fff,#ffb6d1,#fff);
+    -webkit-background-clip:text;
+    color:transparent;
+}
+
+h2{
+    font-size:28px;
+    margin-bottom:18px;
+}
+
+p{
+    font-size:17px;
+    line-height:1.8;
+    color:#ffe5ee;
+}
+
+.card{
+    background:#ffffff12;
+    border:1px solid #ffffff25;
+    backdrop-filter:blur(12px);
+    padding:25px;
+    border-radius:25px;
+    margin-top:20px;
+    box-shadow:0 15px 50px #00000050;
+}
+
+/* PHOTO STYLE */
+.photoBox{
+    margin:20px auto;
+    width:min(320px,85vw);
+    padding:8px;
+    border-radius:25px;
+    background:linear-gradient(135deg,#ff4f81,#a84cff,#ffb6d1);
+    box-shadow:0 0 35px #ff4f8170;
+    animation:photoFloat 3s ease-in-out infinite;
+}
+
+.photoBox img{
+    width:100%;
+    height:260px;
+    object-fit:cover;
+    display:block;
+    border-radius:19px;
+    background:#19001f;
+}
+
+.photoCaption{
+    margin-top:12px;
+    font-size:15px;
+    color:#ffd6e5;
+    font-weight:bold;
+}
+
+@keyframes photoFloat{
+    50%{transform:translateY(-7px)}
+}
+
+.reason{
+    margin:12px 0;
+    padding:14px;
+    border-radius:15px;
+    background:#ffffff10;
+}
+
+.nav{
+    position:fixed;
+    bottom:20px;
+    left:50%;
+    transform:translateX(-50%);
+    display:flex;
+    align-items:center;
+    gap:12px;
+    z-index:100;
+}
+
+.nav button,.musicBtn{
+    border:none;
+    background:#ffffff18;
+    color:white;
+    border:1px solid #ffffff30;
+    backdrop-filter:blur(10px);
+    padding:12px 18px;
+    border-radius:30px;
+    font-size:15px;
+}
+
+.musicBtn{
+    position:fixed;
+    top:18px;
+    right:18px;
+    z-index:300;
+}
+
+.progress{
+    position:fixed;
+    top:0;
+    left:0;
+    height:4px;
+    background:linear-gradient(90deg,#ff4f81,#b45cff);
+    width:10%;
+    transition:.5s;
+    z-index:200;
+}
+
+.gift{
+    font-size:90px;
+    animation:bounce 1.5s infinite;
+}
+
+.cake{
+    font-size:100px;
+    animation:pulse 1.5s infinite;
+}
+
+.final{
+    font-size:75px;
+    animation:pulse 1.2s infinite;
+}
+
+@keyframes bounce{
+    50%{transform:translateY(-15px)}
+}
+
+@media(max-width:500px){
+    .scene{padding:30px 18px 100px}
+    h1{font-size:34px}
+    h2{font-size:25px}
+    p{font-size:15.5px}
+    .card{padding:20px}
+    .photoBox img{height:235px}
+}
+</style>
+</head>
+
+<body>
+
+<div class="bg"></div>
+
+<!-- START SCREEN -->
+<div id="startScreen">
+    <div class="startBox">
+        <div class="bigHeart">💖</div>
+
+        <h1>A Little Surprise For You</h1>
+
+        <p>
+            This page is specially made for my
+            <b>Sister & Bestie</b> 💕
+            <br><br>
+            Turn your volume up and tap below...
+        </p>
+
+        <button class="startBtn" onclick="startSurprise()">
+            ✨ Open Your Surprise ✨
+        </button>
+    </div>
+</div>
+
+<!-- MUSIC -->
+<audio id="music" loop preload="auto">
+    <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<div id="main">
+
+<div class="progress" id="progress"></div>
+
+<button class="musicBtn" onclick="toggleMusic()" id="musicBtn">
+    🔊 Music
+</button>
+
+
+<!-- SCENE 1 -->
+<section class="scene active">
+<div class="content">
+
+<div class="emoji">🎂💕</div>
+
+<h1>For My Sister & Bestie 💕</h1>
+
+<p>
+Today isn't just another day...
+<br>
+Today is the birthday of one of the most
+special people in my life. ❤️
+</p>
+
+<div class="card">
+🌸 My Sister
+<br>
+🤍 My Bestie
+<br>
+🔐 My Secret Keeper
+<br>
+😂 My Partner In Crime
+</div>
+
+</div>
+</section>
+
+
+<!-- SCENE 2 + PHOTO 1 -->
+<section class="scene">
+<div class="content">
+
+<div class="emoji">👭❤️</div>
+
+<h2>More Than Just A Sister</h2>
+
+<p>
+You're not just my sister.
+You're someone I can laugh with,
+fight with, annoy,
+and still know that you'll always be there. 🥹
+</p>
+
+<div class="photoBox">
+<img src="photo1.jpg" alt="Sister Photo 1">
+<div class="photoCaption">One of my favorite memories with you ❤️</div>
+</div>
+
+</div>
+</section>
+
+
+<!-- SCENE 3 + PHOTO 2 -->
+<section class="scene">
+<div class="content">
+
+<div class="emoji">🌷</div>
+
+<h2>My Sister. My Bestie. My Favorite Person. ❤️</h2>
+
+<div class="photoBox">
+<img src="photo2.jpg" alt="Sister Photo 2">
+<div class="photoCaption">My forever bestie 💕</div>
+</div>
+
+<p>
+Life becomes a little easier,
+funnier and happier when you're around.
+😂💕
+</p>
+
+</div>
+</section>
+
+
+<!-- SCENE 4 + PHOTO 3 -->
+<section class="scene">
+<div class="content">
+
+<div class="emoji">🕰️💕</div>
+
+<h2>Our Little Story</h2>
+
+<div class="photoBox">
+<img src="photo3.jpg" alt="Sister Photo 3">
+<div class="photoCaption">Beautiful memories ✨</div>
+</div>
+
+<div class="card">
+
+<div class="reason">
+🌱 <b>The Beginning</b><br>
+We started as siblings...
+</div>
+
+<div class="reason">
+😂 <b>Crazy Moments</b><br>
+Then came all those stupid fights,
+jokes and laughter.
+</div>
+
+<div class="reason">
+🤝 <b>Besties</b><br>
+Somewhere along the way,
+you became my best friend too.
+</div>
+
+</div>
+
+</div>
+</section>
+
+
+<!-- SCENE 5 + PHOTO 4 -->
+<section class="scene">
+<div class="content">
+
+<div class="emoji">💌</div>
+
+<h2>A Letter From My Heart</h2>
+
+<div class="photoBox">
+<img src="photo4.jpg" alt="Sister Photo 4">
+<div class="photoCaption">A memory I'll always keep ❤️</div>
+</div>
+
+<div class="card">
+
+<p>
+Dear Sister,
+<br><br>
+
+I may not always say it,
+but you mean a lot to me.
+<br><br>
+
+Thank you for every laugh,
+every memory,
+every little moment,
+and even every annoying fight. 😂
+<br><br>
+
+No matter where life takes us,
+you'll always have a special place
+in my heart.
+<br><br>
+
+Happy Birthday to my sister
+and my forever bestie. ❤️
+</p>
+
+</div>
+
+</div>
+</section>
+
+
+<!-- SCENE 6 -->
+<section class="scene">
+<div class="content">
+
+<div class="emoji">✨</div>
+
+<h2>Why You're Special</h2>
+
+<div class="card">
+
+<div class="reason">❤️ You understand me.</div>
+<div class="reason">😂 You make me laugh.</div>
+<div class="reason">🤫 You know my secrets.</div>
+<div class="reason">🤝 You're always there.</div>
+<div class="reason">🌸 You make life brighter.</div>
+<div class="reason">♾️ You're family AND my bestie.</div>
+
+</div>
+
+</div>
+</section>
+
+
+<!-- SCENE 7 + PHOTO 5 -->
+<section class="scene">
+<div class="content">
+
+<div class="emoji">🤞❤️</div>
+
+<h2>My Promise</h2>
+
+<div class="photoBox">
+<img src="photo5.jpg" alt="Sister Photo 5">
+<div class="photoCaption">Forever & always 💖</div>
+</div>
+
+<div class="card">
+
+<p>
+I promise to always be there
+when you need me.
+<br><br>
+
+I promise to annoy you
+whenever I get the chance. 😂
+<br><br>
+
+I promise to protect our memories,
+our jokes and our crazy moments.
+<br><br>
+
+I'll always be your brother/sister
+and your bestie. ❤️
+</p>
+
+</div>
+
+</div>
+</section>
+
+
+<!-- SCENE 8 -->
+<section class="scene">
+<div class="content">
+
+<div class="gift">🎁</div>
+
+<h2>Your Birthday Gift</h2>
+
+<div class="card">
+
+<p>
+I wanted to give you something
+that money can't buy...
+<br><br>
+
+A reminder that no matter how much
+we grow up,
+you'll always be my little sister
+and my best friend. ❤️
+<br><br>
+
+This little webpage is just
+a tiny piece of my love for you.
+</p>
+
+</div>
+
+</div>
+</section>
+
+
+<!-- SCENE 9 -->
+<section class="scene">
+<div class="content">
+
+<div class="cake">🎂</div>
+
+<h1>Happy Birthday!</h1>
+
+<h2>My Beautiful Sister 💕</h2>
+
+<p>
+May your life always be filled with
+happiness, success, love and endless smiles.
+✨
+</p>
+
+</div>
+</section>
+
+
+<!-- SCENE 10 -->
+<section class="scene">
+<div class="content">
+
+<div class="final">💖✨🎉</div>
+
+<h1>My Sister & Bestie</h1>
+
+<div class="card">
+
+<p>
+Happy Birthday once again! 🥳
+<br><br>
+
+Never forget...
+<br><br>
+
+You're not just my sister.
+<br>
+You're my bestie,
+my partner in crime,
+my secret keeper,
+and one of my favorite people
+in this world. ❤️
+<br><br>
+
+Love you always! 💕
+</p>
+
+</div>
+
+<h2 style="margin-top:25px;">
+🎂 HAPPY BIRTHDAY 🎂
+</h2>
+
+</div>
+</section>
+
+
+<div class="nav">
+<button onclick="prevScene()">⬅️</button>
+<button onclick="nextScene()">Next ➡️</button>
+</div>
+
+</div>
+
+
+<script>
+
+const scenes=document.querySelectorAll(".scene");
+const music=document.getElementById("music");
+const startScreen=document.getElementById("startScreen");
+const main=document.getElementById("main");
+const progress=document.getElementById("progress");
+const musicBtn=document.getElementById("musicBtn");
+
+let currentScene=0;
+
+
+/* START */
+function startSurprise(){
+
+    startScreen.style.display="none";
+    main.style.display="block";
+
+    music.volume=.75;
+
+    music.play()
+    .then(()=>{
+        musicBtn.innerHTML="🔊 Music";
+    })
+    .catch(()=>{
+        musicBtn.innerHTML="🔇 Tap Music";
+    });
+
+    showScene(0);
+    createHearts();
+}
+
+
+/* SCENE */
+function showScene(index){
+
+    scenes.forEach(scene=>{
+        scene.classList.remove("active");
+    });
+
+    scenes[index].classList.add("active");
+
+    progress.style.width=
+        ((index+1)/scenes.length)*100+"%";
+}
+
+
+/* NEXT */
+function nextScene(){
+
+    if(currentScene<scenes.length-1){
+
+        currentScene++;
+        showScene(currentScene);
+
+    }else{
+
+        createConfetti();
+    }
+}
+
+
+/* PREVIOUS */
+function prevScene(){
+
+    if(currentScene>0){
+
+        currentScene--;
+        showScene(currentScene);
+    }
+}
+
+
+/* MUSIC */
+function toggleMusic(){
+
+    if(music.paused){
+
+        music.play()
+        .then(()=>{
+            musicBtn.innerHTML="🔊 Music";
+        });
+
+    }else{
+
+        music.pause();
+        musicBtn.innerHTML="🔇 Music";
+    }
+}
+
+
+/* HEARTS */
+function createHearts(){
+
+    setInterval(()=>{
+
+        const heart=document.createElement("div");
+
+        heart.className="heart";
+
+        const hearts=["❤️","💕","💖","💗","💓","💞","💘"];
+
+        heart.innerHTML=
+        hearts[Math.floor(Math.random()*hearts.length)];
+
+        heart.style.left=Math.random()*100+"vw";
+
+        heart.style.fontSize=
+        (15+Math.random()*25)+"px";
+
+        heart.style.animationDuration=
+        (5+Math.random()*6)+"s";
+
+        document.body.appendChild(heart);
+
+        setTimeout(()=>{
+            heart.remove();
+        },11000);
+
+    },700);
+}
+
+
+/* STARS */
+function createStars(){
+
+    for(let i=0;i<70;i++){
+
+        const star=document.createElement("div");
+
+        star.className="star";
+
+        star.style.left=Math.random()*100+"vw";
+        star.style.top=Math.random()*100+"vh";
+
+        star.style.animationDelay=
+        Math.random()*3+"s";
+
+        document.body.appendChild(star);
+    }
+}
+
+
+/* CONFETTI */
+function createConfetti(){
+
+    const emojis=["🎉","🎊","❤️","💕","✨","🥳","🎂"];
+
+    for(let i=0;i<70;i++){
+
+        const item=document.createElement("div");
+
+        item.innerHTML=
+        emojis[Math.floor(Math.random()*emojis.length)];
+
+        item.style.position="fixed";
+        item.style.left=Math.random()*100+"vw";
+        item.style.top="-30px";
+        item.style.fontSize=
+        (15+Math.random()*25)+"px";
+
+        item.style.zIndex="999";
+
+        item.style.transition=
+        "transform 4s linear,opacity 4s";
+
+        document.body.appendChild(item);
+
+        setTimeout(()=>{
+
+            item.style.transform=
+            `translateY(110vh) rotate(${Math.random()*720}deg)`;
+
+            item.style.opacity="0";
+
+        },50);
+
+        setTimeout(()=>{
+            item.remove();
+        },4500);
+    }
+}
+
+
+/* KEYBOARD */
+document.addEventListener("keydown",e=>{
+
+    if(e.key==="ArrowRight") nextScene();
+
+    if(e.key==="ArrowLeft") prevScene();
+
+});
+
+
+createStars();
+
+</script>
+
+</body>
+</html>
+```
